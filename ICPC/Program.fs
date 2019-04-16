@@ -253,7 +253,11 @@ let rivers input =
   match clist with 
   |[] -> []
   |_ ->
- 
+   match clist.Head with
+   |' ' -> []
+   |_ -> match List.last clist with
+         |' ' -> []
+         |_ -> 
              match count < List.length clist with
              |true -> match System.Char.IsLetter(clist.[count]) || (clist.[count]).Equals(' ')  with
                |true -> match clist.[count] with
@@ -270,8 +274,11 @@ let rivers input =
              |false -> clist
  let charlist = List.ofSeq input
 
- let answer = checkValidString charlist 0 
-
+ let ans = checkValidString charlist 0 
+ let answer = 
+    match List.length stringlist > 2 with
+    |true -> ans
+    |false ->[]
  match answer with 
   |[] -> None
   |_  -> Some answer
